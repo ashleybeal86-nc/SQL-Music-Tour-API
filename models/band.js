@@ -35,8 +35,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       recommendation: {
-        type: DataTypes.STRING
-      }
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,
