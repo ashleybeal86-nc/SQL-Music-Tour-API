@@ -5,14 +5,19 @@ const { Band } = db;
 
 
 // FIND ALL BANDS--(INDEX ROUTE)
-bands.get('/', async (req, res) => {
-    try {
-        const foundBands = await Band.findAll()
-        res.status(200).json(foundBands)
-    } catch (error) {
-        res.status(500).json(error)
-    }
-})
+bands.get("/", async (req, res) => {
+  try {
+    const foundBands = await Band.findAll({
+      order: [["available_start_time", "ASC"]],
+      where: {
+        name: { [Op.like]: `%${req.query.name ? req.query.name : ""}%` },
+      },
+    });
+    res.status(200).json(foundBands);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 
 // FIND A SPECIFIC BAND--(SHOW ROUTE)
