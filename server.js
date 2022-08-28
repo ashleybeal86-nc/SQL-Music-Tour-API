@@ -12,6 +12,9 @@ app.use(express.urlencoded({ extended: false }))
 
 // SEQUELIZE CONNECTION
 
+// CONTROLLERS 
+const bandsController = require('./controllers/bands_controller')
+app.use('/bands', bandsController)
 
 
 // ROOT
@@ -20,6 +23,7 @@ app.get('/', (req, res) => {
         message: 'Welcome to the Tour API'
     })
 })
+
 
 // LISTEN
 app.listen(process.env.PORT, () => {
