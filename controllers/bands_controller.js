@@ -2,6 +2,7 @@
 const bands = require("express").Router();
 const db = require("../models");
 const { Band } = db;
+const { Op } = require("sequelize");
 
 // FIND ALL BANDS--(INDEX ROUTE)
 bands.get("/", async (req, res) => {
@@ -73,7 +74,6 @@ bands.get("/:name", async (req, res) => {
     res.status(500).json(error);
   }
 });
-
 
 // CREATE A BAND--(CREATE/POST ROUTE)
 bands.post("/", async (req, res) => {
